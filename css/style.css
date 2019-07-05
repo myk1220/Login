@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+body{
+    background-image: url(../img/index.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: relative;
+}
+.loginWrap{
+    background-color:rgba(216, 163, 30, 0.3);
+    width: 480px;
+    height: 280px;
+    margin:150px auto 0;
+    border-radius: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.loginWrap>.login{
+    margin:0 auto;
+    width: 350px;
+}
+.loginWrap>.login>h2{
+    margin: 0 0 20px 0;
+    padding: 30px 0 0 0;
+    color:white;
+    letter-spacing: 4px;
+    cursor: default;
+}
+.loginWrap>.login>div{
+    margin:20px 0; 
+}
+#userName{
+    width: 93%;
+    padding: 5px 10px;
+}
+#passWord{
+    width: 93%;
+    padding: 5px 10px;
+}
+#submit{
+    padding: 3px 10px;
+    border: 1px solid  rgb(233, 201, 164);
+    width:100%;
+    border-radius: 2px;
+    background: rgb(236, 181, 114);
+    color: white;
+    letter-spacing: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all .5s;
+    cursor: pointer;
+}
+#submit:hover{
+    background:rgb(241, 147, 31); 
+    border: 1px solid  rgb(253, 199, 136);
+}
+.loginWrap>.login>div:last-child{
+    text-align: center;
+}
+.loginWrap>.login>div:last-child>span{
+    margin: 0 10px;
+}
+.loginWrap>.login>div:last-child>span>a{
+    text-decoration: none;
+}
+.loginSuccess{
+    display: none;
+}
+.loginSuccessShow{
+   color: white;
+   letter-spacing: 5px;
+   font-size: 30px;
+   position: fixed;
+   top:200px;
+   left:500px;
+}
+.outLogin{
+    display: none;
+}
+.outLoginShow{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    border-radius: 2px;
+    background: rgb(236, 181, 114,0.1);
+    color: white;
+    padding: 2px 5px;
+    border: 1px solid  rgb(255, 255, 255);
+}
