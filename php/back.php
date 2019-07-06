@@ -1,7 +1,10 @@
 <?php
+    //获取前台Post请求发送的数据并存储在两个变量中
     $uname=$_POST['username'];
     $pwd=$_POST['password'];
+    //设置一个成功变量空数组用于存储一会儿验证是否成功的信息码
     $success=array();
+    //连接数据库并进行验证用户名密码是否存在，根据验证结果添加不同的infoCode信息码
     $con=mysqli_connect('localhost','root','','mic');
     if($con){
         mysqli_query($con,'set name utf8');
@@ -17,7 +20,6 @@
             for($j=0;$j<count($info);$j++){
                 if($uname==$info[$j]['username']&$pwd==$info[$j]['password']){
                     $success['infoCode']=0;
-                    // setcookie('username',$uname,time()+3600*24);
                     break;
                 }else{
                     $success['infoCode']=1;
@@ -29,5 +31,6 @@
     }else{
         $success['infoCode']=3;
     }
+    //返回添加了信息码的success变量
     echo json_encode($success);
 ?>
