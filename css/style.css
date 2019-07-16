@@ -90,4 +90,6 @@ body{
     color: white;
     padding: 2px 5px;
     border: 1px solid  rgb(255, 255, 255);
+    cursor: pointer;
+    outline: none;
 }
