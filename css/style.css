@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 ul{
     list-style: none;
@@ -64,9 +65,6 @@ body{
 .loginWrap>.login>div:last-child>span{
     margin: 0 10px;
 }
-.loginWrap>.login>div:last-child>span>a{
-    text-decoration: none;
-}
 .loginSuccess{
     display: none;
 }
@@ -92,4 +90,60 @@ body{
     border: 1px solid  rgb(255, 255, 255);
     cursor: pointer;
     outline: none;
+}
+
+/* 注册页面 */
+
+.registration_wrap{
+    display: none;
+    background-color:rgba(216, 163, 30, 0.3);
+    width: 480px;
+    height: 280px;
+    margin:150px auto 0;
+    border-radius: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.registration_wrap>.registration{
+    margin:0 auto;
+    width: 350px;
+}
+.registration_wrap>.registration>.registration_head{
+    margin: 0 0 30px 0;
+    padding: 30px 0 0 0;
+    color:white;
+    letter-spacing: 4px;
+    cursor: default;
+    font-size: 24px;
+}
+#newUsername{
+    width: 93%;
+    padding: 5px 10px;
+}
+#newPassword{
+    width: 93%;
+    padding: 5px 10px;
+}
+#submit_info{
+    padding: 3px 10px;
+    border: 1px solid  rgb(233, 201, 164);
+    width:100%;
+    border-radius: 2px;
+    background: rgb(236, 181, 114);
+    color: white;
+    letter-spacing: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: all .5s;
+    cursor: pointer;
+}
+#submit_info:hover{
+    background:rgb(241, 147, 31); 
+    border: 1px solid  rgb(253, 199, 136);
+}
+.registration_wrap>.registration>.registration_content>div{
+    margin: 20px 0;
+}
+.registration_wrap>.registration>.registration_content>div:last-child{
+    color: white;
+    text-align: right;
 }

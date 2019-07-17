@@ -16,7 +16,7 @@
                                 <input type="button" id="submit" value="登录">
                             </div>
                             <div class="group">
-                                <span><a href="#">忘记密码？</a></span><span><a href="#">注册一个新账号</a></span>
+                                <span><a href="#">忘记密码？</a></span><span><a id="registration" href="#">注册一个新账号</a></span>
                             </div>
                         </div>
                     </div>
@@ -24,6 +24,21 @@
                     XXX，开启一段旅行吧...
                 </div>
                 <input type="button" id="outLogin" class="outLogin" value="注销登录">
+                <div class="registration_wrap">
+                    <div class="registration">
+                        <div class="registration_head">注册</div>
+                        <div class="registration_content">
+                            <div class="registration_username">
+                                <input type="text" id="newUsername" placeholder="请输入新建用户名">
+                            </div>
+                            <div class="registration_password">
+                                <input type="password" id="newPassword" placeholder="请设置用户密码">
+                            </div>
+                            <input type="button" id="submit_info" value="注册">
+                            <div><a id="turn_back" href="#">已拥有用户账号</a></div>    
+                        </div>
+                    </div>
+                </div>
             `,
         render(data){
             document.querySelector(this.el).innerHTML= this.template;
@@ -47,7 +62,6 @@
         },
 
         sendData(data={}){
-            console.log(data);
             return new Promise((resolve, reject) => {
                 let xhr=new XMLHttpRequest();
                 xhr.onreadystatechange=function(){
@@ -70,6 +84,30 @@
                 xhr.open("POST","http://127.0.0.1/study/php/back.php",true);
                 xhr.send(formData); 
             })
+        },
+
+        creatData(data={}){
+            return new Promise((resolve, reject) => {
+                let xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4&&xhr.status==200){
+                        let result=JSON.parse(xhr.responseText);
+                        if(result.registration_infoCode==0){
+                            resolve("注册成功");
+                        }else if(result.registration_infoCode==1){
+                            alert('用户名已存在');
+                        }else if(result.registration_infoCode==2||result.registration_infoCode==3){
+                            alert('数据系统错误');
+                        }
+                    }
+                }
+                //post请求发送数据formData给后台，添加用户名及密码进formData
+                var formData=new FormData();
+                formData.append("username",data.username);
+                formData.append("password",data.password);
+                xhr.open("POST","http://127.0.0.1/study/php/registration.php",true);
+                xhr.send(formData); 
+            })
         }
 
     };
@@ -82,6 +120,7 @@
             this.model=model;
             this.view.render(this.model.data);
             this.login(view,model);
+            this.login(view,model);
         },
 
         login(view,model){
@@ -89,9 +128,14 @@
             this.model=model;
             let login=document.querySelector(this.view.el).querySelector(".loginWrap");
             let uname=document.querySelector(this.view.el).querySelector("#userName");
+            let newUsername=document.querySelector(this.view.el).querySelector("#newUsername");
+            let newPassword=document.querySelector(this.view.el).querySelector("#newPassword");
             let pwd=document.querySelector(this.view.el).querySelector("#passWord");
             let loginSuccess=document.querySelector(this.view.el).querySelector('#success');
             let outLogin=document.querySelector(this.view.el).querySelector('#outLogin');
+            let registration_wrap=document.querySelector(this.view.el).querySelector(".registration_wrap");
+            let registration=document.querySelector(this.view.el).querySelector("#registration");
+            
 
             document.querySelector(this.view.el).querySelector("#submit").onclick=function(){
                     let userdata={'username':uname.value,'password':pwd.value};
@@ -112,6 +156,28 @@
                 uname.value='';
                 pwd.value='';
             }
+
+            registration.onclick=function(){
+                login.style.display = 'none';
+                registration_wrap.style.display = 'block';
+            }
+
+            document.querySelector(this.view.el).querySelector("#turn_back").onclick=function(){
+                login.style.display = 'block';
+                registration_wrap.style.display = 'none';
+            }
+
+            document.querySelector(this.view.el).querySelector("#submit_info").onclick=function(){
+
+                let userdata={'username':newUsername.value,'password':newPassword.value};
+                    model.creatData(userdata).then((res)=>{
+                        alert("注册成功");
+                        login.style.display = 'block';
+                        registration_wrap.style.display = 'none';
+                    })
+
+            }
+
         },
 
         setCookie(name,value){ 
